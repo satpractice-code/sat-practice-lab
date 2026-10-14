@@ -3,296 +3,369 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SAT Practice Lab</title>
 <style>
-:root{color-scheme:light dark;--bg:light-dark(#f4f6fb,#101522);--card:light-dark(#fff,#1a2232);--text:light-dark(#172033,#f2f5fb);--muted:light-dark(#65718a,#aab5c9);--line:light-dark(#dfe5ef,#344158);--accent:light-dark(#4058d6,#a5b2ff);--green:light-dark(#18794e,#6de0a8);--red:light-dark(#bd3434,#ff9292)}
+:root {
+  --bg:#f4f6fb; --card:#fff; --text:#172033; --muted:#65718a;
+  --line:#dfe5ef; --blue:#4058d6; --pale:#edf0ff;
+  --green:#18794e; --greenbg:#e8f8ef; --red:#bd3434; --redbg:#fff0f0;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,system-ui,sans-serif}
-header{padding:20px 5%;background:var(--card);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center}
-.brand{font-weight:800;font-size:19px}
-.pill,.tag{border:1px solid var(--line);padding:7px 10px;border-radius:9px;font-size:12px;color:var(--muted)}
-main{max-width:1050px;margin:35px auto;padding:0 18px 40px}
-h1{font-size:clamp(28px,5vw,42px);margin:8px 0}
-.subtitle{color:var(--muted);line-height:1.6}
-.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:25px 0}
-.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px}
-.module{padding:22px;text-align:left;color:var(--text);cursor:pointer;font:inherit}
-.module:hover{border-color:var(--accent)}
-.module h3{margin:0 0 10px}
-.module p{color:var(--muted);line-height:1.5;font-size:14px}
-.module strong{color:var(--accent);font-size:13px}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:18px;align-items:start}
-.panel{overflow:hidden}
-.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.tags{display:flex;gap:8px;flex-wrap:wrap}
-.tag{color:var(--accent)}
-.progress{height:4px;background:var(--line)}
-.fill{height:100%;background:#5369e4;width:0}
-.qbody{padding:24px}
-.prompt{font-size:19px;line-height:1.6;font-weight:700}
-.answers{display:grid;gap:10px;margin-top:20px}
-.answer{display:flex;gap:12px;align-items:center;text-align:left;padding:13px;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--text);font:inherit;cursor:pointer}
-.answer:hover:not(:disabled){border-color:var(--accent)}
-.letter{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-weight:bold}
-.answer.correct{border-color:var(--green);background:light-dark(#e8f8ef,#173b30)}
-.answer.wrong{border-color:var(--red);background:light-dark(#fff0f0,#45272d)}
-.answer:disabled{cursor:default}
-.feedback{display:none;padding:14px;margin-top:16px;border-radius:10px;line-height:1.6}
-.feedback.show{display:block}
-.feedback.good{color:var(--green);background:light-dark(#e8f8ef,#173b30)}
-.feedback.bad{color:var(--red);background:light-dark(#fff0f0,#45272d)}
-.actions{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
-.btn{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:pointer;font-size:14px}
-.primary{background:#4058d6;color:white}
-.secondary{background:transparent;border:1px solid var(--line);color:var(--text)}
-.btn:disabled{opacity:.4;cursor:not-allowed}
-.sidebar{padding:20px}
-.statrow{display:flex;justify-content:space-between;margin:15px 0;color:var(--muted)}
-.statrow strong{color:var(--text)}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:14px}
-.dot{aspect-ratio:1;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--muted);cursor:pointer}
-.dot.current{border-color:var(--accent);color:var(--accent)}
-.dot.right{border-color:var(--green);color:var(--green)}
-.dot.wrong{border-color:var(--red);color:var(--red)}
-.result{text-align:center;padding:35px 20px}
-.score{font-size:48px;font-weight:900;margin:18px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+header{padding:20px 5%;background:var(--card);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:20px;font-weight:800}
+.logo{display:inline-grid;place-items:center;background:var(--blue);color:white;border-radius:10px;width:38px;height:38px;margin-right:8px}
+header small{color:var(--muted)}
+main{max-width:1050px;width:calc(100% - 32px);margin:35px auto 60px}
+h1{font-size:clamp(30px,5vw,43px);margin:8px 0}
+h2,h3{line-height:1.3}
+.muted{color:var(--muted);line-height:1.6}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue)}
+.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:26px 0}
+.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:17px}
+.card{padding:23px;text-align:left;color:var(--text);cursor:pointer;font:inherit;transition:.15s}
+.card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.card h3{margin:0 0 10px}
+.card p{color:var(--muted);line-height:1.55;font-size:14px}
+.card strong{color:var(--blue);font-size:13px}
 .hidden{display:none!important}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 255px;gap:18px;align-items:start}
+.panel{overflow:hidden}
+.qhead{padding:19px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center}
+.tag{background:var(--pale);color:var(--blue);padding:7px 9px;border-radius:8px;font-size:12px;font-weight:800}
+.progress{height:5px;background:var(--line)}
+#progressFill{height:100%;width:0;background:var(--blue);transition:width .2s}
+.qbody{padding:24px}
+#prompt{font-size:19px;font-weight:700;line-height:1.6;margin:0 0 22px;white-space:pre-line}
+.answers{display:grid;gap:10px}
+.answer{width:100%;padding:13px;text-align:left;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--text);font:inherit;display:flex;gap:12px;align-items:center;cursor:pointer}
+.answer:hover:not(:disabled){border-color:var(--blue)}
+.letter{width:29px;height:29px;flex-shrink:0;display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;font-weight:800}
+.answer.correct{background:var(--greenbg);border-color:var(--green)}
+.answer.incorrect{background:var(--redbg);border-color:var(--red)}
+.answer:disabled{cursor:default}
+.feedback{display:none;margin-top:17px;padding:15px;border-radius:11px;line-height:1.6;font-size:14px}
+.feedback.show{display:block}
+.feedback.good{background:var(--greenbg);color:var(--green)}
+.feedback.bad{background:var(--redbg);color:var(--red)}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.btn{padding:12px 16px;border-radius:10px;border:1px solid var(--line);background:white;color:var(--text);font-weight:800;cursor:pointer}
+.primary{background:var(--blue);color:white;border-color:var(--blue)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.sidebar{padding:19px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stat{background:var(--bg);padding:12px;border-radius:10px}
+.stat b{font-size:24px;display:block}
+.stat small{color:var(--muted)}
+.qgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:13px}
+.qdot{aspect-ratio:1;border:1px solid var(--line);background:white;border-radius:7px;cursor:pointer;font-weight:700}
+.qdot.current{background:var(--pale);border-color:var(--blue);color:var(--blue)}
+.qdot.right{background:var(--greenbg);border-color:var(--green)}
+.qdot.wrong{background:var(--redbg);border-color:var(--red)}
+.result{text-align:center;padding:38px 20px}
+.score{font-size:52px;font-weight:900;margin:20px}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
-@media(max-width:750px){.layout{grid-template-columns:1fr}.sidebar{order:-1}.modules{grid-template-columns:1fr}.qbody{padding:18px}header{padding:16px}.pill{font-size:10px}}
+@media(max-width:760px){.modules,.layout{grid-template-columns:1fr}.sidebar{order:-1}.qgrid{grid-template-columns:repeat(9,1fr)}.qbody{padding:18px}#prompt{font-size:17px}}
 </style>
 </head>
 <body>
 <header>
- <div class="brand">📘 SAT Practice Lab</div>
- <div class="pill">4 MODULES · NO TIMER</div>
+  <div class="brand"><span class="logo">SL</span>SAT Practice Lab</div>
+  <small>UNOFFICIAL PRACTICE · NO TIMER</small>
 </header>
+
 <main>
- <div id="home">
-  <p style="color:var(--accent);font-weight:bold;letter-spacing:2px">YOUR PRACTICE SESSION</p>
-  <h1>Practice the SAT, your way.</h1>
-  <p class="subtitle">Choose a module, answer each question, and get immediate feedback and explanations. Take your time—there is no timer.</p>
-  <div class="modules">
-   <button class="card module" type="button" data-module="0"><h3>Reading & Writing · Module 1</h3><p>27 questions on grammar, vocabulary, reading, and evidence.</p><strong>START MODULE →</strong></button>
-   <button class="card module" type="button" data-module="1"><h3>Reading & Writing · Module 2</h3><p>27 questions with a mix of medium and challenging skills.</p><strong>START MODULE →</strong></button>
-   <button class="card module" type="button" data-module="2"><h3>Math · Module 1</h3><p>22 questions on algebra, geometry, and data analysis.</p><strong>START MODULE →</strong></button>
-   <button class="card module" type="button" data-module="3"><h3>Math · Module 2</h3><p>22 questions with additional math practice.</p><strong>START MODULE →</strong></button>
-  </div>
- </div>
-
- <div id="exam" class="layout hidden">
-  <section class="panel">
-   <div class="qhead"><strong id="qcount">QUESTION 1</strong><div class="tags"><span class="tag" id="section">READING & WRITING</span><span class="tag" id="difficulty">MEDIUM</span></div></div>
-   <div class="progress"><div id="fill" class="fill"></div></div>
-   <div class="qbody">
-    <p id="prompt" class="prompt"></p>
-    <div id="answers" class="answers"></div>
-    <div id="feedback" class="feedback" aria-live="polite"></div>
-    <div class="actions"><button id="prev" class="btn secondary">← Previous</button><button id="next" class="btn primary" disabled>Next question →</button></div>
-   </div>
+  <section id="home">
+    <div class="eyebrow">Your practice session</div>
+    <h1>Practice the SAT, your way.</h1>
+    <p class="muted">Choose a module, answer the questions, and review explanations. Your progress and score appear as you work.</p>
+    <div class="modules">
+      <button class="card" type="button" onclick="startModule(0)">
+        <h3>Reading & Writing · Module 1</h3>
+        <p>27 questions covering grammar, vocabulary, transitions, evidence, and reading comprehension.</p>
+        <strong>START MODULE →</strong>
+      </button>
+      <button class="card" type="button" onclick="startModule(1)">
+        <h3>Reading & Writing · Module 2</h3>
+        <p>27 additional practice questions with a range of difficulty.</p>
+        <strong>START MODULE →</strong>
+      </button>
+      <button class="card" type="button" onclick="startModule(2)">
+        <h3>Math · Module 1</h3>
+        <p>22 questions covering algebra, functions, geometry, ratios, and data.</p>
+        <strong>START MODULE →</strong>
+      </button>
+      <button class="card" type="button" onclick="startModule(3)">
+        <h3>Math · Module 2</h3>
+        <p>22 additional math practice questions, including multi-step problems.</p>
+        <strong>START MODULE →</strong>
+      </button>
+    </div>
   </section>
-  <aside class="panel sidebar">
-   <strong id="moduleTitle">Module progress</strong>
-   <div class="statrow"><span>Answered</span><strong id="answered">0</strong></div>
-   <div class="statrow"><span>Correct</span><strong id="correct">0</strong></div>
-   <hr style="border:0;border-top:1px solid var(--line)">
-   <strong>Question map</strong>
-   <div id="qgrid" class="grid"></div>
-   <p class="subtitle" style="font-size:12px">Select a number to revisit a question.</p>
-   <button id="back" class="btn secondary" style="width:100%">← All modules</button>
-  </aside>
- </div>
 
- <section id="results" class="panel result hidden">
-  <p style="color:var(--accent);font-weight:bold">MODULE COMPLETE</p>
-  <h2>Practice makes progress.</h2>
-  <div id="score" class="score">0 / 27</div>
-  <p id="message" class="subtitle"></p>
-  <button id="retry" class="btn primary">Try again ↻</button>
-  <button id="choose" class="btn secondary">Choose another module</button>
- </section>
+  <section id="exam" class="hidden">
+    <div class="layout">
+      <section class="panel">
+        <div class="qhead">
+          <strong id="qCount">QUESTION 1</strong>
+          <span class="tag" id="sectionTag">READING & WRITING</span>
+        </div>
+        <div class="progress"><div id="progressFill"></div></div>
+        <div class="qbody">
+          <p id="prompt"></p>
+          <div id="answers" class="answers"></div>
+          <div id="feedback" class="feedback" aria-live="polite"></div>
+          <div class="actions">
+            <button class="btn" id="prevBtn" type="button">← Previous</button>
+            <button class="btn primary" id="nextBtn" type="button" disabled>Next question →</button>
+          </div>
+        </div>
+      </section>
+      <aside class="panel sidebar">
+        <h3 id="sideTitle">Module progress</h3>
+        <div class="stats">
+          <div class="stat"><b id="answered">0/27</b><small>Answered</small></div>
+          <div class="stat"><b id="correct">0</b><small>Correct</small></div>
+        </div>
+        <hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+        <strong>Question map</strong>
+        <div id="qgrid" class="qgrid"></div>
+        <p class="muted" style="font-size:12px">Select a number to revisit a question.</p>
+        <button class="btn" type="button" onclick="backHome()">← All modules</button>
+      </aside>
+    </div>
+  </section>
+
+  <section id="results" class="panel result hidden">
+    <div class="eyebrow">Module complete</div>
+    <h2>Practice makes progress.</h2>
+    <div id="finalScore" class="score">0 / 27</div>
+    <p id="resultMessage" class="muted"></p>
+    <button class="btn primary" type="button" onclick="restartModule()">Try again ↻</button>
+    <button class="btn" type="button" onclick="backHome()">Choose another module</button>
+  </section>
 </main>
 <footer>Independent practice resource · Not affiliated with or endorsed by the College Board.</footer>
 
 <script>
+"use strict";
+
 const $ = id => document.getElementById(id);
 
 const rw = [
-{p:"Although the initial findings were promising, the researchers remained ____ and repeated the experiment before publishing their conclusions.",c:["skeptical","jubilant","indifferent","impulsive"],a:0,e:"Skeptical means not yet convinced. Repeating the experiment shows the researchers wanted more evidence."},
-{p:"Which choice best combines these sentences? The observatory opened in 1924. It now houses historic telescopes.",c:["The observatory opened in 1924, it now houses historic telescopes.","Opened in 1924, the observatory now houses historic telescopes.","The observatory opened in 1924, historic telescopes.","The observatory opened in 1924; and housing telescopes."],a:1,e:"The introductory phrase correctly describes the observatory and combines the ideas into one clear sentence."},
-{p:"A city added protected bike lanes. Later, the number of residents commuting by bicycle increased. Which claim is supported?",c:["The lanes eliminated all traffic.","The lanes were followed by an increase in bicycle commuting.","Most residents stopped driving.","The lanes are safe in every city."],a:1,e:"The text supports an increase in bicycle commuting, but it does not establish the other claims."},
-{p:"In the sentence 'The editor praised the concise explanation because it conveyed a complex idea without unnecessary detail,' concise most nearly means:",c:["brief and clear","uncertain","highly technical","unconvincing"],a:0,e:"Without unnecessary detail means brief and clear."},
-{p:"The first survey had a small sample. ____, the team conducted a second survey with participants from several regions.",c:["Nevertheless","For example","Similarly","In particular"],a:0,e:"Nevertheless signals that the team responded to the limitation by conducting another survey."},
-{p:"The collection of rare maps ____ on display until Friday.",c:["are","were","is","have been"],a:2,e:"The subject is the singular noun collection, so the correct verb is is."},
-{p:"The new battery maintained nearly the same output in cold conditions. The team plans additional tests before production. What is the best conclusion?",c:["The battery is sold worldwide.","It may perform well in cold conditions, but more testing is planned.","Older batteries never worked.","The project was abandoned."],a:1,e:"The text reports cold-weather performance but says further testing is planned."},
-{p:"Each of the proposed designs ____ a different approach to reducing water use.",c:["present","presents","presenting","have presented"],a:1,e:"Each is singular and takes the singular verb presents."},
-{p:"The historian qualified her claim by acknowledging that several documents were missing. Qualified most nearly means:",c:["limited or made more precise","proved beyond doubt","repeated word for word","dismissed completely"],a:0,e:"Acknowledging missing documents limits how strongly the historian can make the claim."},
-{p:"The first material absorbed moisture quickly; ____, the second repelled water.",c:["by contrast","as a result","for instance","in other words"],a:0,e:"By contrast introduces a difference between the two materials."},
-{p:"Which sentence uses punctuation correctly?",c:["The results were surprising, the team repeated the trial.","The results were surprising; the team repeated the trial.","The results were surprising the team, repeated the trial.","The results, were surprising; the team repeated the trial."],a:1,e:"A semicolon can connect two closely related independent clauses."},
-{p:"Independent teams found similar patterns in data using different instruments. Why is this relevant?",c:["It suggests the pattern may not depend on one instrument or team.","It proves all measurements were identical.","It shows all instruments were defective.","It means research is unnecessary."],a:0,e:"Similar findings from independent teams using different instruments support the reliability of the pattern."},
-{p:"The path was steep. The hikers reached the summit before sunset. Which transition best connects the ideas?",c:["Because the path was steep, the hikers reached the summit.","Although the path was steep, the hikers reached the summit.","The path was steep; therefore, they did not reach the summit.","The path was steep, similarly the summit was reached."],a:1,e:"Although shows the contrast between the difficult path and the hikers' success."},
-{p:"The scientist's explanation accounted for the observations and made predictions later confirmed by tests. The explanation was ____.",c:["coherent","irrelevant","ambiguous","contradictory"],a:0,e:"Coherent means logically consistent."},
-{p:"Neither the lead researcher nor the assistants ____ willing to publish the incomplete results.",c:["was","is","were","has been"],a:2,e:"With neither...nor, the verb agrees with the nearer subject, assistants."},
-{p:"The novel was initially overlooked, but a later review drew attention to its unusual structure. What is implied?",c:["It was never published.","A later review helped it receive attention.","The author rewrote it after publication.","Readers disliked it."],a:1,e:"The review drew attention to the novel."},
-{p:"The new method required fewer steps and produced fewer errors. It was ____ than the old method.",c:["better","more efficient","more famous","more complicated"],a:1,e:"More efficient precisely describes fewer steps and fewer errors."},
-{p:"The samples were stored at low temperatures ____ this helped preserve their chemical properties.",c:[",",";","apostrophe",": and"],a:1,e:"A semicolon separates the two independent clauses."},
-{p:"A study of flowering times covered only three years. What limitation should readers consider?",c:["The results may not represent long-term patterns.","Flowers never bloom in cold weather.","Temperature cannot affect flowering.","Every region was included."],a:0,e:"Three years may be too short to establish a long-term pattern."},
-{p:"To mitigate a problem means to:",c:["worsen it","measure it","reduce its severity","predict it"],a:2,e:"Mitigate means to make something less severe."},
-{p:"The committee reviewed the proposal carefully, ____ it approved the plan with two revisions.",c:["and","but because","although,","unless"],a:0,e:"And correctly connects the committee's review and subsequent action."},
-{p:"A library extended its evening hours. Attendance after 6 p.m. rose, especially among students who worked during the day. What is the best summary?",c:["The library plans to close earlier.","Extended evening hours were followed by increased evening attendance, especially among working students.","Only students visited the library.","Daytime attendance disappeared."],a:1,e:"This choice includes both the attendance increase and the group particularly affected."},
-{p:"Which choice shows plural possession correctly?",c:["The researchers results","The researchers' results","The researchers's results","The researcher results'"],a:1,e:"For a plural noun ending in s, place the apostrophe after the s."},
-{p:"The author calls a proposal 'a tentative step toward reform.' Tentative suggests the step is:",c:["final and irreversible","cautious and not yet certain","unrelated to reform","impossible to evaluate"],a:1,e:"Tentative means provisional or cautious."},
-{p:"The first model was inexpensive to build. ____, it consumed too much energy to be practical.",c:["However","Therefore","Likewise","For example"],a:0,e:"However signals a contrast between low construction cost and high energy use."},
-{p:"By the time the museum opened, the conservators ____ the painting for months.",c:["had restored","restore","will restore","are restoring"],a:0,e:"Had restored describes an action occurring before another past event."},
-{p:"A report finds a correlation between exercise and improved sleep but does not test whether exercise causes the improvement. What distinction is made?",c:["Correlation alone does not establish causation.","Sleep always causes exercise.","The measures are unrelated.","The report proves a direct cause."],a:0,e:"An observed relationship does not by itself prove that one factor causes another."}
+["Although the initial findings were promising, the researchers remained ____ and repeated the experiment before publishing their conclusions.",["skeptical","jubilant","indifferent","impulsive"],0,"Repeating an experiment before accepting findings shows skepticism."],
+["Choose the best combination: “The observatory opened in 1924. It now houses historic telescopes.”",["The observatory opened in 1924, it now houses historic telescopes.","Opened in 1924, the observatory now houses historic telescopes.","The observatory opened in 1924, historic telescopes.","The observatory opened in 1924; and houses telescopes."],1,"The introductory phrase correctly modifies the observatory."],
+["A city added protected bike lanes. Bicycle commuting increased afterward, but traffic overall was not studied. Which claim is supported?",["Bike lanes eliminated traffic.","The lanes were followed by increased bicycle commuting.","Most residents stopped driving.","The study proved the lanes are safe everywhere."],1,"The text supports an increase in bicycle commuting only."],
+["“The explanation conveyed a complex idea without unnecessary detail.” Concise most nearly means:",["brief and clear","uncertain","technical","unconvincing"],0,"Concise means expressing something clearly in few words."],
+["The first survey had a small sample. ____, the team conducted another survey with participants from several regions.",["Nevertheless","For example","Similarly","In particular"],0,"Nevertheless signals a response to the first survey's limitation."],
+["The collection of rare maps ____ on display until Friday.",["are","were","is","have been"],2,"The singular subject is collection, so use is."],
+["The new battery maintained its output in cold conditions. More tests are planned before production. What is the best conclusion?",["It is sold worldwide.","It may perform well in cold conditions, but needs more testing.","Earlier batteries never worked.","The project was abandoned."],1,"The text reports a promising result but says testing remains."],
+["Each of the proposed designs ____ a different approach to saving water.",["present","presents","presenting","have presented"],1,"Each is singular and takes presents."],
+["The historian limited her claim after acknowledging missing documents. “Limited” here means:",["made more precise","proved beyond doubt","repeated","dismissed completely"],0,"The missing documents restrict how confidently the claim can be made."],
+["The first material absorbed moisture quickly; ____, the second repelled water.",["by contrast","as a result","for instance","in other words"],0,"By contrast introduces a difference."],
+["Which choice is punctuated correctly?",["The results were surprising, the team repeated the trial.","The results were surprising; the team repeated the trial.","The results were surprising the team, repeated the trial.","The results, were surprising; the team repeated the trial."],1,"A semicolon can join two independent clauses."],
+["Independent teams found similar data patterns while using different instruments. Why does this matter?",["It suggests the pattern may not depend on one instrument or team.","It proves every measurement was identical.","It shows all instruments were defective.","It means no more research is needed."],0,"Independent findings from different instruments support reliability."],
+["The path was steep. The hikers reached the summit before sunset. Choose the best connection.",["Because the path was steep, the hikers reached the summit.","Although the path was steep, the hikers reached the summit.","The path was steep; therefore, they did not reach the summit.","The path was steep, similarly the summit was before sunset."],1,"Although correctly contrasts the difficulty with the success."],
+["The explanation accounted for the observations and made predictions confirmed by later tests. It was ____.",["coherent","irrelevant","ambiguous","contradictory"],0,"Coherent means logically consistent."],
+["Neither the lead researcher nor the assistants ____ willing to publish incomplete results.",["was","is","were","has been"],2,"The verb agrees with the nearer plural subject, assistants."],
+["A novel was initially overlooked, but a later review drew attention to its unusual structure. What is implied?",["It was never published.","The review helped the novel receive attention.","The author changed it after publication.","Readers disliked it."],1,"The review drew attention to the novel."],
+["A method requiring fewer steps and producing fewer errors is ____ than the old method.",["better","more efficient","more famous","more complicated"],1,"More efficient specifically describes fewer steps and errors."],
+["The samples were stored at low temperatures ____ this helped preserve their chemical properties.",[",",";","—,",": and"],1,"A semicolon joins two related independent clauses."],
+["A study found that flowers bloomed earlier in warmer springs, but it covered only three years. What is a limitation?",["The results may not show long-term patterns.","Flowers never bloom in cold weather.","Temperature cannot affect flowering.","Every region was included."],0,"Three years may be too short to establish a long-term pattern."],
+["To mitigate the effects of summer heat means to ____ them.",["worsen","measure","reduce","predict"],2,"Mitigate means make less severe or reduce."],
+["The committee reviewed the proposal carefully, ____ it approved the plan with two revisions.",["and","but because","although,","unless"],0,"And correctly joins the two actions."],
+["A library extended evening hours. Attendance after 6 p.m. rose, especially among students working during the day. Best summary?",["The library plans to close earlier.","Extended evening hours were followed by greater evening attendance, especially among working students.","Only students used the library.","Daytime attendance disappeared."],1,"This choice includes the change and the group particularly affected."],
+["Which choice uses the possessive correctly?",["The researchers results were published.","The researchers’ results were published.","The researchers’s results were published.","The researcher results’ were published."],1,"For a plural noun ending in s, add an apostrophe after the s."],
+["A policy is called “a tentative step toward broader reform.” Tentative suggests it is:",["final and irreversible","cautious and not yet certain","unrelated to reform","impossible to evaluate"],1,"Tentative means provisional or cautious."],
+["The model was inexpensive to build. ____, it consumed too much energy to be practical.",["However","Therefore","Likewise","For example"],0,"However signals a contrast."],
+["By the time the museum opened, conservators ____ the painting for months.",["had restored","restore","will restore","are restoring"],0,"Past perfect describes work before another past event."],
+["A report found a correlation between exercise and improved sleep but did not test direct causation. What distinction does it make?",["Correlation alone does not establish causation.","Sleep always causes exercise.","The measures are unrelated.","The report proved a direct cause."],0,"An observed relationship does not by itself prove cause and effect."]
 ];
 
 const math = [
-{p:"Solve for x: 3x + 5 = 17.",c:["2","3","4","5"],a:2,e:"Subtract 5 from both sides: 3x = 12. Divide by 3: x = 4."},
-{p:"A $40 item is discounted by 25%. What is its sale price?",c:["$10","$25","$30","$35"],a:2,e:"25% of $40 is $10. Subtract the discount: $40 − $10 = $30."},
-{p:"If 5x + 7 = 27, what is x?",c:["2","3","4","5"],a:2,e:"Subtract 7 to get 5x = 20, then divide by 5. x = 4."},
-{p:"A rectangle has length 9 and width 4. What is its area?",c:["13","26","36","45"],a:2,e:"Area = length × width = 9 × 4 = 36 square units."},
-{p:"What is the mean of 6, 8, and 13?",c:["8","9","10","11"],a:1,e:"Add the values and divide by 3: 27 ÷ 3 = 9."},
-{p:"A line has slope 3 and y-intercept 2. Which equation represents it?",c:["y = 2x + 3","y = 3x + 2","y = 3 + 2x","y = 3x − 2"],a:1,e:"Slope-intercept form is y = mx + b, where m is slope and b is the y-intercept."},
-{p:"If f(x) = x² − 4, what is f(3)?",c:["3","5","9","13"],a:1,e:"Substitute 3: f(3) = 3² − 4 = 9 − 4 = 5."},
-{p:"A data set has 18 values. Five more values are added. How many values are there now?",c:["13","18","23","90"],a:2,e:"18 + 5 = 23 values."},
-{p:"A right triangle has legs of length 6 and 8. What is the hypotenuse?",c:["7","10","12","14"],a:1,e:"Using the Pythagorean theorem, c² = 6² + 8² = 100, so c = 10."},
-{p:"Solve: 2(x + 3) = 20.",c:["4","6","7","10"],a:2,e:"Divide by 2: x + 3 = 10. Subtract 3: x = 7."},
-{p:"A quantity increases from 40 to 60. What is the percent increase?",c:["20%","40%","50%","60%"],a:2,e:"The increase is 20. Divide by the original 40: 20/40 = 50%."},
-{p:"If x² = 49 and x is positive, what is x?",c:["−7","7","14","49"],a:1,e:"The solutions are −7 and 7; the positive solution is 7."},
-{p:"Solve: 4x − 9 = 19.",c:["5","6","7","8"],a:2,e:"Add 9 to get 4x = 28. Divide by 4: x = 7."},
-{p:"A $60 item is discounted by 10%. What is the sale price?",c:["$6","$50","$54","$59"],a:2,e:"10% of $60 is $6, so the sale price is $60 − $6 = $54."},
-{p:"If 2x + 8 = 22, what is x?",c:["5","6","7","8"],a:2,e:"Subtract 8 to get 2x = 14, then divide by 2: x = 7."},
-{p:"A rectangle is 12 units long and 5 units wide. What is its perimeter?",c:["17","34","60","120"],a:1,e:"Perimeter = 2(12 + 5) = 34 units."},
-{p:"What is the median of 3, 5, 8, 11, 13?",c:["5","8","9","11"],a:1,e:"The middle value in the ordered list is 8."},
-{p:"If y = 2x + 1, what is y when x = 4?",c:["7","8","9","10"],a:2,e:"Substitute x = 4: y = 2(4) + 1 = 9."},
-{p:"A triangle has angles of 50° and 60°. What is the third angle?",c:["60°","70°","80°","90°"],a:1,e:"Triangle angles total 180°. The third angle is 180 − 50 − 60 = 70°."},
-{p:"Solve: 3(x − 2) = 15.",c:["3","5","7","9"],a:2,e:"Divide by 3: x − 2 = 5. Add 2: x = 7."},
-{p:"A price increases from $80 to $100. What is the percent increase?",c:["20%","25%","30%","50%"],a:1,e:"The increase is $20. Divide by the original $80: 20/80 = 25%."},
-{p:"If x² − 9 = 0 and x is positive, what is x?",c:["−9","3","9","81"],a:1,e:"x² = 9, so x = ±3. The positive solution is 3."}
+["Solve: 3x + 5 = 20.",["3","5","7","15"],1,"Subtract 5 to get 3x = 15; divide by 3 to get x = 5."],
+["If f(x) = 2x² − 3, what is f(4)?",["13","25","29","32"],2,"2(4²) − 3 = 32 − 3 = 29."],
+["A $80 item is discounted by 25%. What is the sale price?",["$20","$55","$60","$75"],2,"25% of $80 is $20; $80 − $20 = $60."],
+["A line has slope 3 and y-intercept −2. Which equation represents it?",["y = −2x + 3","y = 3x − 2","y = 3x + 2","y = x − 2"],1,"Slope-intercept form is y = mx + b."],
+["What is the area of a rectangle with length 12 and width 7?",["19","38","84","144"],2,"Area = length × width = 12 × 7 = 84."],
+["If 5x − 7 = 28, what is x?",["5","6","7","8"],2,"Add 7, then divide 35 by 5: x = 7."],
+["A quantity increases from 40 to 50. What is the percent increase?",["10%","20%","25%","40%"],2,"The increase is 10; 10 ÷ 40 = 0.25 = 25%."],
+["The mean of 4, 8, 10, and 14 is:",["8","9","10","12"],1,"(4 + 8 + 10 + 14) ÷ 4 = 9."],
+["If x² = 81 and x is positive, what is x?",["−9","9","18","81"],1,"The positive square root of 81 is 9."],
+["A right triangle has legs 6 and 8. What is the hypotenuse?",["7","10","12","14"],1,"By the Pythagorean theorem, c² = 36 + 64 = 100, so c = 10."],
+["Solve the system: x + y = 10 and x − y = 2.",["x = 4, y = 6","x = 5, y = 5","x = 6, y = 4","x = 8, y = 2"],2,"Adding equations gives 2x = 12, so x = 6 and y = 4."],
+["If 4(x − 3) = 20, what is x?",["2","5","8","11"],2,"Divide by 4: x − 3 = 5, so x = 8."],
+["A car travels 150 miles in 3 hours at a constant speed. What is its speed?",["30 mph","45 mph","50 mph","60 mph"],2,"Speed = distance ÷ time = 150 ÷ 3 = 50 mph."],
+["If y = 2x + 1, what is y when x = 6?",["7","12","13","14"],2,"Substitute x = 6: y = 12 + 1 = 13."],
+["What is 3/5 of 45?",["15","18","27","30"],2,"45 ÷ 5 = 9, and 9 × 3 = 27."],
+["A circle has radius 4. What is its area?",["4π","8π","16π","32π"],2,"Area = πr² = π(4²) = 16π."],
+["If 2x + 9 = 3x − 4, what is x?",["−13","−5","5","13"],3,"Subtract 2x and add 4: x = 13."],
+["A bag contains 3 red and 7 blue balls. What is the probability of choosing red?",["3/7","3/10","7/10","1/3"],1,"There are 3 red balls out of 10 total balls."],
+["A value of 60 is increased by 10%. What is the new value?",["6","54","66","70"],2,"Ten percent of 60 is 6; 60 + 6 = 66."],
+["For g(x) = x² + 2x, what is g(3)?",["9","12","15","18"],2,"g(3) = 3² + 2(3) = 9 + 6 = 15."],
+["The ratio of cats to dogs is 2:3. If there are 25 animals, how many are dogs?",["10","12","15","18"],2,"There are 5 ratio parts; each part is 5, so dogs = 3 × 5 = 15."],
+["A rectangle has perimeter 34 and length 10. What is its width?",["5","7","10","14"],1,"2(10 + w) = 34, so 10 + w = 17 and w = 7."]
 ];
 
 const modules = [
-{title:"Reading & Writing · Module 1",kind:"rw",count:27,section:"READING & WRITING"},
-{title:"Reading & Writing · Module 2",kind:"rw",count:27,section:"READING & WRITING"},
-{title:"Math · Module 1",kind:"math",count:22,section:"MATH"},
-{title:"Math · Module 2",kind:"math",count:22,section:"MATH"}
+ {title:"Reading & Writing · Module 1",kind:"rw",count:27,offset:0},
+ {title:"Reading & Writing · Module 2",kind:"rw",count:27,offset:7},
+ {title:"Math · Module 1",kind:"math",count:22,offset:0},
+ {title:"Math · Module 2",kind:"math",count:22,offset:0}
 ];
 
 let moduleIndex=0, questions=[], current=0, responses=[];
 
+function buildQuestions(module,index){
+  const bank=module.kind==="rw"?rw:math;
+  return Array.from({length:module.count},(_,i)=>{
+    const base=bank[(i+module.offset)%bank.length];
+    return {
+      prompt:base[0],
+      choices:base[1].slice(),
+      answer:base[2],
+      explain:base[3],
+      section:module.kind==="rw"?"READING & WRITING":"MATH",
+      difficulty:i<5?"EASY":i<Math.ceil(module.count/2)?"MEDIUM":"HARD"
+    };
+  });
+}
+
 function startModule(index){
- if(!Number.isInteger(index)||!modules[index]) return;
- moduleIndex=index;
- const mod=modules[index];
- const bank=mod.kind==="rw"?rw:math;
- questions=Array.from({length:mod.count},(_,i)=>({...bank[(i+(index===1?7:index===3?5:0))%bank.length],section:mod.section,difficulty:i<5?"EASY":i<15?"MEDIUM":"HARD"}));
- current=0;
- responses=Array(questions.length).fill(null);
- $("home").classList.add("hidden");
- $("results").classList.add("hidden");
- $("exam").classList.remove("hidden");
- $("moduleTitle").textContent=mod.title;
- render();
- $("exam").scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-function render(){
- const q=questions[current];
- $("qcount").textContent=`QUESTION ${current+1} / ${questions.length}`;
- $("section").textContent=q.section;
- $("difficulty").textContent=q.difficulty;
- $("prompt").textContent=q.p;
- $("fill").style.width=`${(current+1)/questions.length*100}%`;
- const box=$("answers");
- box.innerHTML="";
- q.c.forEach((choice,i)=>{
-  const b=document.createElement("button");
-  b.type="button";
-  b.className="answer";
-  const letter=document.createElement("span");
-  letter.className="letter";
-  letter.textContent="ABCD"[i];
-  const label=document.createElement("span");
-  label.textContent=choice;
-  b.append(letter,label);
-  if(responses[current]!==null){
-   b.disabled=true;
-   if(i===q.a)b.classList.add("correct");
-   else if(i===responses[current])b.classList.add("wrong");
+  try{
+    index=Number(index);
+    if(!Number.isInteger(index)||index<0||index>=modules.length){
+      throw new Error("Invalid module selection.");
+    }
+    moduleIndex=index;
+    questions=buildQuestions(modules[index],index);
+    if(!questions.length) throw new Error("No questions loaded.");
+    current=0;
+    responses=Array(questions.length).fill(null);
+    $("home").classList.add("hidden");
+    $("results").classList.add("hidden");
+    $("exam").classList.remove("hidden");
+    $("sideTitle").textContent=modules[index].title;
+    renderQuestion();
+    $("exam").scrollIntoView({behavior:"smooth",block:"start"});
+  }catch(error){
+    alert("The module could not load. Refresh the page and try again.");
+    console.error(error);
   }
-  b.addEventListener("click",()=>choose(i));
-  box.appendChild(b);
- });
- const fb=$("feedback");
- fb.className="feedback";
- fb.textContent="";
- if(responses[current]!==null){
-  const right=responses[current]===q.a;
-  fb.classList.add("show",right?"good":"bad");
-  const heading=document.createElement("strong");
-  heading.textContent=right?"✓ Correct!":"✗ Incorrect.";
-  const explanation=document.createElement("div");
-  explanation.textContent=q.e;
-  fb.append(heading,explanation);
- }
- $("prev").disabled=current===0;
- $("next").disabled=responses[current]===null;
- $("next").textContent=current===questions.length-1?"Finish module →":"Next question →";
- updateStats();
 }
 
-function choose(i){
- if(responses[current]!==null)return;
- responses[current]=i;
- render();
+function renderQuestion(){
+  const q=questions[current];
+  if(!q) return;
+  $("qCount").textContent=`QUESTION ${current+1} / ${questions.length}`;
+  $("sectionTag").textContent=q.section;
+  $("progressFill").style.width=`${((current+1)/questions.length)*100}%`;
+  $("prompt").textContent=q.prompt;
+
+  const list=$("answers");
+  list.innerHTML="";
+  ["A","B","C","D"].forEach((letter,i)=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="answer";
+    const badge=document.createElement("span");
+    badge.className="letter";
+    badge.textContent=letter;
+    const text=document.createElement("span");
+    text.textContent=q.choices[i];
+    button.append(badge,text);
+
+    if(responses[current]!==null){
+      button.disabled=true;
+      if(i===q.answer) button.classList.add("correct");
+      if(i===responses[current]&&i!==q.answer) button.classList.add("incorrect");
+    }else{
+      button.addEventListener("click",()=>chooseAnswer(i));
+    }
+    list.appendChild(button);
+  });
+
+  const fb=$("feedback");
+  fb.className="feedback";
+  fb.textContent="";
+  if(responses[current]!==null){
+    const correct=responses[current]===q.answer;
+    fb.classList.add("show",correct?"good":"bad");
+    const heading=document.createElement("strong");
+    heading.textContent=correct?"✓ Correct! ":"✗ Incorrect. ";
+    const explanation=document.createElement("span");
+    explanation.textContent=q.explain;
+    fb.append(heading,explanation);
+  }
+
+  $("prevBtn").disabled=current===0;
+  $("nextBtn").disabled=responses[current]===null;
+  $("nextBtn").textContent=current===questions.length-1?"Finish module →":"Next question →";
+  updateStats();
+}
+
+function chooseAnswer(index){
+  if(responses[current]!==null)return;
+  responses[current]=index;
+  renderQuestion();
 }
 
 function updateStats(){
- $("answered").textContent=`${responses.filter(x=>x!==null).length} / ${questions.length}`;
- $("correct").textContent=responses.reduce((sum,x,i)=>sum+(x===questions[i].a?1:0),0);
- const grid=$("qgrid");
- grid.innerHTML="";
- questions.forEach((q,i)=>{
-  const b=document.createElement("button");
-  b.type="button";
-  b.className="dot"+(i===current?" current":"");
-  if(responses[i]!==null)b.classList.add(responses[i]===q.a?"right":"wrong");
-  b.textContent=i+1;
-  b.addEventListener("click",()=>{current=i;render();});
-  grid.appendChild(b);
- });
+  const done=responses.filter(v=>v!==null).length;
+  const score=responses.reduce((total,value,i)=>total+(value===questions[i].answer?1:0),0);
+  $("answered").textContent=`${done}/${questions.length}`;
+  $("correct").textContent=score;
+  const grid=$("qgrid");
+  grid.innerHTML="";
+  questions.forEach((q,i)=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="qdot";
+    if(i===current)button.classList.add("current");
+    if(responses[i]!==null)button.classList.add(responses[i]===q.answer?"right":"wrong");
+    button.textContent=i+1;
+    button.setAttribute("aria-label",`Go to question ${i+1}`);
+    button.addEventListener("click",()=>{current=i;renderQuestion();});
+    grid.appendChild(button);
+  });
 }
 
 function showResults(){
- const score=responses.reduce((sum,x,i)=>sum+(x===questions[i].a?1:0),0);
- $("exam").classList.add("hidden");
- $("results").classList.remove("hidden");
- $("score").textContent=`${score} / ${questions.length}`;
- $("message").textContent=`You answered ${responses.filter(x=>x!==null).length} questions. ${score===questions.length?"Perfect score!":score/questions.length>=.75?"Nice work! Review any missed explanations.":"Keep practicing and review the explanations for missed questions."}`;
- $("results").scrollIntoView({behavior:"smooth",block:"start"});
+  const score=responses.reduce((total,value,i)=>total+(value===questions[i].answer?1:0),0);
+  $("exam").classList.add("hidden");
+  $("results").classList.remove("hidden");
+  $("finalScore").textContent=`${score} / ${questions.length}`;
+  $("resultMessage").textContent=
+    score===questions.length
+      ?"Perfect score! Great work."
+      :score/questions.length>=0.75
+        ?"Nice work! Review the explanations for questions you missed."
+        :"Keep practicing. Review each explanation and try the module again.";
+  $("results").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-function backToModules(){
- $("exam").classList.add("hidden");
- $("results").classList.add("hidden");
- $("home").classList.remove("hidden");
- $("home").scrollIntoView({behavior:"smooth",block:"start"});
+function backHome(){
+  $("exam").classList.add("hidden");
+  $("results").classList.add("hidden");
+  $("home").classList.remove("hidden");
+  $("home").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-document.querySelectorAll("[data-module]").forEach(button=>{
- button.addEventListener("click",()=>startModule(Number(button.dataset.module)));
+function restartModule(){startModule(moduleIndex);}
+
+$("prevBtn").addEventListener("click",()=>{
+  if(current>0){current--;renderQuestion();}
 });
 
-$("prev").addEventListener("click",()=>{if(current>0){current--;render();}});
-$("next").addEventListener("click",()=>{
- if(responses[current]===null)return;
- if(current<questions.length-1){current++;render();}
- else showResults();
+$("nextBtn").addEventListener("click",()=>{
+  if(responses[current]===null)return;
+  if(current<questions.length-1){current++;renderQuestion();}
+  else showResults();
 });
-$("back").addEventListener("click",backToModules);
-$("choose").addEventListener("click",backToModules);
-$("retry").addEventListener("click",()=>startModule(moduleIndex));
+
+// Keep the launch function available to the module buttons.
+window.startModule=startModule;
 </script>
 </body>
 </html>
